@@ -11,17 +11,9 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
-  getWeatherData(cityName: string): Observable<WeatherData> {
-    return this.http.get<WeatherData>(environment.weatherApiBaseUrl, {
-      headers: new HttpHeaders()
-      .set(environment.XRapidAPIHostHeaderName, 
-        environment.XRapidAPIHostHeaderValue)
-      .set(environment.XRapidAPIKeyHeaderName, 
-          environment.XRapidAPIKeyHeaderValue),
-      params: new HttpParams ()
-      .set('q', cityName)
-      .set('units', 'metric')
-      .set('mode', 'json')
-    })
+  getWeatherDataService() {
+    let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=f7c4cd7ddf74d96d65524df103a7c5d1";
+    return this.http.get(url);
+    
   }
 }
